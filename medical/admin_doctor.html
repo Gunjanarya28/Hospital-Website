@@ -1,0 +1,173 @@
+<?php
+$conn = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
+if(isset($_POST['submit']) && isset($_FILES['profilePhoto'])){
+   $fullName = mysqli_real_escape_string($conn, $_POST['fullName']);
+   $dob = mysqli_real_escape_string($conn, $_POST['dob']);
+   $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+   $contact =  $_POST['contact'];
+   $qualification = mysqli_real_escape_string($conn, $_POST['qualification']);
+   $licenseNumber = $_POST['licenseNumber'];
+   $specialization = mysqli_real_escape_string($conn, $_POST['specialization']);
+   $startDate = mysqli_real_escape_string($conn, $_POST['startDate']);
+   $position = mysqli_real_escape_string($conn, $_POST['position']);
+   $targetDirectory = "image/";
+   $targetFile = $targetDirectory . basename($_FILES['profilePhoto']['name']);
+   move_uploaded_file($_FILES['profilePhoto']['tmp_name'], "image/". $_FILES['profilePhoto']['name']);
+   $profilePhoto = mysqli_real_escape_string($conn, $targetFile);
+   $insert = mysqli_query($conn, "INSERT INTO `doctor_details`(fullName, dob, gender, contact, qualification, licenseNumber, specialization, startDate, position, profilePhoto)
+    VALUES('$fullName', '$dob', '$gender', '$contact', '$qualification', '$licenseNumber', '$specialization', '$startDate', '$position', '$profilePhoto')")or die('query failed');
+}
+$sql="SELECT * From doctor_details";
+$query=mysqli_query($conn,$sql);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> medicare admin </title>
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+   
+</head>
+
+<body style="background-image: url('img/background.jpg');
+              background-repeat: no-repeat;
+              background-size: cover;">
+
+<?php include ('admin_menu.php');?>
+
+<section class="admin_doctor" id="admin_doctor">
+    <h1 class="heading"> <span>doc</span>tors</h1>    
+    <div class="row">
+    <h3 class="mr-auto">list of doctors</h3>
+    <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#modalOne">+ Add Doctor</button>
+    <table class="table table-responsive">
+      <tr>
+        <th>S.No</th>
+        <th>Profile Picture</th>
+        <th>Full name</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Contact No.</th>
+        <th>Position</th>
+        <th>Qualification</th>
+        <th>Medical Lic No.</th>
+        <th>Specilization</th>
+        <th>Start Date</th>
+        <th>Action</th>
+      </tr>
+      <?php       $r=1;
+                while($row=$query->fetch_assoc())
+                { 
+            ?>
+                <tr>
+                    <td><strong><?php echo $r; ?></strong></td>
+                    <td><img src="<?php echo $row['profilePhoto']; ?>" alt="Profile Picture" class="img-thumbnail" style="width: 60px; height: 60px; display: block; margin: 0 auto;"></td>
+                    <td><?php echo $row['fullName']; ?></td>
+                    <td><?php echo $row['dob']; ?></td>
+                    <td><?php echo $row['gender']; ?></td>
+                    <td><?php echo $row['contact']; ?></td>
+                    <td><?php echo $row['position']; ?></td>
+                    <td><?php echo $row['qualification']; ?></td>
+                    <td><?php echo $row['licenseNumber']; ?></td>
+                    <td><?php echo $row['specialization']; ?></td>
+                    <td><?php echo $row['startDate']; ?></td>
+                    <td><div class="btn-group"> 
+                    <button type="button" class="btn btn-default btn-sm"><i class='far fa-edit'></i></button>
+                    <button type="button" class="btn btn-default btn-sm ml-2"><i class='far fa-trash-alt'></i></button>
+                </div></td>    
+                </tr>
+                    <?php $r++;?>
+                <?php
+                }
+            ?>
+    </table>
+        
+    <div id="modalOne" class="modal">
+    <div class="modal-content">
+    <form  action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
+     <h3>add doctor</h3>
+     <div class="form-row">
+     <div class="form-group col-md-6">
+     <label for="fullName">Full Name:</label>
+     <input type="text" id="fullName" name="fullName" class="form-control" required class="box">
+        </div>
+        <div class="form-group col-md-6">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" class="form-control"required class="box">
+        </div>
+       </div>
+       <div class="form-row">
+        <div class="form-group col-md-6">
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" class="form-control" required class="box">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        </div>
+     <div class="form-group col-md-6">
+        <label for="contact">Contact Information:</label>
+        <input type="text" id="contact" name="contact" class="form-control" required class="box">
+     </div>
+</div>
+<div class="form-row">
+     <div class="form-group col-md-6">
+        <label for="qualification">Qualification:</label>
+        <input type="text" id="qualification" name="qualification" class="form-control" required class="box">
+     </div>
+     <div class="form-group col-md-6">
+        <label for="licenseNumber">Medical License No:</label>
+        <input type="text" id="licenseNumber" name="licenseNumber"class="form-control"  required class="box">
+       </div>
+</div>
+<div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="specialization">Specialization:</label>
+        <input type="text" id="specialization" name="specialization"class="form-control"  required class="box">
+       </div>
+       <div class="form-group col-md-6">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" class="form-control" required class="box">
+       </div>
+</div>
+<div class="form-row">
+       <div class="form-group col-md-6">
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position" class="form-control" required class="box">
+       </div>
+       <div class="form-group col-md-6">
+       <label for="profilePhoto">Profile Photo:</label>
+        <input type="file" id="profilePhoto" name="profilePhoto" class="form-control" required accept="image/" class="box">
+        </div>
+       </div>
+        <input type="submit" name="submit" value="add" class="btn">
+        <?php
+            if(isset($message)) {
+                foreach($message as $message) {
+                echo'<p class ="message">'.$message.'</p>';
+            }
+            }
+        ?>
+  </form>
+ </div>
+</div>
+</div>
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
+

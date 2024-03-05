@@ -1,0 +1,114 @@
+<?php
+session_start();
+if (isset($_SESSION['emails'])) {
+    $username = $_SESSION['emails'];
+    $placeholder = "$username";
+} else {
+    $placeholder = 'Enter your email';
+}
+$conn = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
+if(isset($_POST['submit']) ){
+   $em=$_SESSION['emails'];
+   $name = mysqli_real_escape_string($conn, $_POST['name']);
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $number = $_POST['number'];
+   $specialist = mysqli_real_escape_string($conn, $_POST['specialist']);
+   $doctor = mysqli_real_escape_string($conn, $_POST['doctor']);
+   $appointment_no = $_POST['id'];
+   $insert = mysqli_query($conn, "UPDATE `contact_form` SET name='$name', number='$number', specialist='$specialist', doctor= '$doctor',appointment_no='$appointment_no' where email='$em'") or die('query failed');
+
+   if($insert && (isset($em))){
+      $message[] = 'appointment made successfully!';
+   }else{
+      $message[] = 'appointment failed!';
+   }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> medicare hospital website </title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<?php include ('menu.php');?>
+<!-- appointmenting section starts   -->
+
+<section class="appointment" id="appointment">
+
+    <h1 class="heading"> <span>appointment</span> now </h1>    
+
+    <div class="row">
+
+        <div class="image">
+            <img src="img/appointment-img.svg" alt="">
+        </div>
+
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+     
+            <h3>make appointment</h3>
+            <input type="text"name="name" placeholder="your name" class="box" required>
+            <input type="text"name="number" placeholder="your number" class="box" required>
+            <input type="email"name="email" id="email" required placeholder="<?php echo$placeholder ?>" class="box" readonly>
+            <select name="specialist" id="specilization" class="box" required onchange="populatedoctor()">
+            <option value="">Choose a Specialization</option>
+            <option value= "Orthopaedic">Orthopaedic</option>
+            <option value="IVFandInfertility">IVF and Infertility</option>
+            <option value="Pediatrician">Pediatrician</option>
+            <option value="ChildSpecialist">Child Specialist</option>
+            <option value="Neurosurgeon">Neurosurgeon</option>
+            <option value="Dental">Dental</option>
+            <option value="Nephrology">Nephrology</option>
+            <option value="ConsultantPathology">Consultant Pathology</option>
+            <option value="Physician">Physician</option>
+            </select>
+            <select name="doctor" id="doctor" class="box" required>
+            <option value="">Choose a Doctor</option>
+            </select>
+            <div class="date-time-container ">
+            
+                <input type="date" name="appointment_date" class="box"  required>
+            
+                 <select name="time_slot" class="box"  required>
+                    <option value="">Choose a Time Slot</option>
+                    <option value="9:00 AM - 10:00 AM">9:00 AM - 10:00 AM</option>
+                    <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                    <option value="10:00 AM - 11:00 AM">11:00 AM - 11:00 AM</option>
+                    <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                
+                </select>
+            
+            </div>
+            <input type="submit" name="submit" value="appointment now" class="btn">
+        
+           <?php
+            if(isset($message)) {
+                foreach($message as $message) {
+                echo'<p class ="message">'.$message.'</p>';
+            }
+            }
+        ?>
+         </form>
+    </div>
+</section>
+
+<!-- appointmenting section ends -->
+
+<?php include ('footer.php');?>
+
+<!-- js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
+
+

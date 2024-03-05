@@ -1,0 +1,78 @@
+<?php
+$conn = mysqli_connect('localhost','root','','contact_db');
+$sql="SELECT * From contact_form";
+$query=mysqli_query($conn,$sql);
+if (isset($_GET['id'])){
+$id = $_GET['id'];
+$sql_query = "DELETE FROM contact_form WHERE id = '$id'";
+$queryy=mysqli_query($conn,$sql_query);
+header("Location: ".$_SERVER['PHP_SELF']);
+exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> medicare admin </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body  style="background-image: url('img/background.jpg');
+              background-repeat: no-repeat;
+              background-size: 100%,100%;">
+<?php include ('admin_menu.php');?>
+<section class="admin_appointment" id="admin_appointment">
+
+    <h1 class="heading"> <span>appoint</span>ments</h1>    
+    <div class="row">
+    <table class="table table-responsive">
+      <tr>
+        <th>S.No</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Number</th>
+        <th>Specilization</th>
+        <th>Doctor's Name</th>
+        <th>Edit</th>
+      </tr>
+    <?php       $r=1;
+                while($row=$query->fetch_assoc())
+                { 
+            ?>
+                <tr>
+                    <td><?php echo $r; ?></td>
+                    <td><?php echo $row['first']; ?></td>
+                    <td><?php echo $row['last']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['number']; ?></td>
+                    <td><?php echo $row['specialist']; ?></td>
+                    <td><?php echo $row['doctor']; ?></td>
+                    <td>
+                 <button class="delete-button" onclick="delete_row('<?php echo $row['id']?>')">Delete</button>
+                </td>
+                <tr>
+                    <?php $r++;?>
+                <?php
+                }
+            ?>
+    </table>   
+    </div>
+  
+</section>
+
+<!-- js file link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
+

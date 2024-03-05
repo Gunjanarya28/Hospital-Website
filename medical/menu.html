@@ -1,0 +1,61 @@
+
+
+    <header class="header5">
+        <?php
+        if (isset($_SESSION['emails'])) {
+
+            $em = $_SESSION['emails'];
+            $conn = mysqli_connect('localhost', 'root', '', 'contact_db');
+            $sql = mysqli_query($conn, "SELECT * FROM `contact_form` WHERE email='$em'");
+            if ($sql->num_rows > 0) {
+                $row = $sql->fetch_assoc();
+            }
+        ?>
+            <nav class="nav5">
+                <ul class="navbar-nav5 sm-icons">
+                    <li><a href="https://www.facebook.com/" title="Follow Us On Facebook"><img src="https://cdn-icons-png.flaticon.com/128/733/733547.png" style="height:2rem; width:2rem;"/></a></li>
+                    <li><a href="https://www.twitter.com/" title="Follow Us On Twitter"><img src="https://cdn-icons-png.flaticon.com/128/3670/3670151.png" style="height:2rem; width:2rem;"/></a></li>
+                    <li><a href="https://www.instagram.com/" title="Follow Us On Instagram"><img src="https://cdn-icons-png.flaticon.com/128/2111/2111463.png" style="height:2rem; width:2rem;"/></a></li>
+                    <li><a href="https://www.linkedin.com/" title="Follow Us On Linkedin"><img src="https://cdn-icons-png.flaticon.com/128/3536/3536505.png" style="height:2rem; width:2rem;"/></a></li>
+
+                </ul>
+                <ul style="float:right" class="con">
+                    <li class="contact"><a href="#" title="Contact US">Contact</a></li>
+                    <li class="contact"><a href="profile.php"><?= $row['first']; ?></a></li>
+                    <li class="contact"><a href="logout.php">logout</a></li>
+                </ul>
+            </nav>
+        <?php
+        } else {
+        ?>
+            <nav class="nav5">
+                <ul class="navbar-nav5 sm-icons">
+                    <li><a href="https://www.facebook.com/" title="Follow Us On Facebook"><img src="https://cdn-icons-png.flaticon.com/128/733/733547.png" style="height:2rem; width:2rem;"/></a></li>
+                    <li><a href="https://www.twitter.com/" title="Follow Us On Twitter"><img src="https://cdn-icons-png.flaticon.com/128/3670/3670151.png" style="height:2rem; width:2rem;"/></a></li>
+                    <li><a href="https://www.instagram.com/" title="Follow Us On Instagram"><img src="https://cdn-icons-png.flaticon.com/128/2111/2111463.png" style="height:2rem; width:2rem;"/></a></li>
+                    <li><a href="https://www.linkedin.com/" title="Follow Us On Linkedin"><img src="https://cdn-icons-png.flaticon.com/128/3536/3536505.png" style="height:2rem; width:2rem;"/></a></li>
+
+                </ul>
+                <ul style="float:right" class="con">
+                    <li class="contact"><a href="#" title="Contact US">Contact</a></li>
+                    <li class="contact"><a href="login.php">Login</a></li>
+                </ul>
+            </nav>
+        <?php
+        }
+        ?>
+        <a href="index.php" class="logo"> <i class="fas fa-heartbeat"></i> <strong>MEDICARE</strong> </a>
+
+        <nav class="navbar5">
+            <a href="index.php">home</a>
+            <a href="about.php">about</a>
+            <a href="services.php">services</a>
+            <a href="doctor.php">doctors</a>
+            <a href="appointment.php">appointment</a>
+            <a href="review.php">review</a>
+            <a href="blog.php">blogs</a>
+        </nav>
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+    </header>
+

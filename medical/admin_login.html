@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> medicare admin </title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body style="background-image: url('img/background.jpg');
+              background-repeat: no-repeat;
+              background-size: cover;">
+
+<section class="login" id="login">
+
+    <h1 class="heading"> <span>admin </span>login</h1>    
+
+    <div class="row">
+
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+            <h3>log in</h3>
+            <input type="email" name="email" required placeholder="Enter your email" class="box">
+            <input type="password"name="password" required placeholder="Enter your password" class="box">   
+            <input type="submit" name="submit" value="login" class="btn"><br>         
+         </form>
+       
+    </div>
+
+</section>
+
+<!-- js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
+

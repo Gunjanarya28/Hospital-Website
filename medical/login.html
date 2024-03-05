@@ -1,0 +1,87 @@
+<?php
+session_start();                            
+$conn = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
+
+if(isset($_POST['submit'])){
+
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $password = mysqli_real_escape_string($conn, $_POST['password']);
+   
+   $select = mysqli_query($conn, "SELECT * FROM `contact_form`WHERE email = '$email' AND password = '$password'");
+   
+    $row = mysqli_fetch_assoc($select);
+    if($email==isset($row['email']) && $password==isset($row['password']))
+   {
+    $_SESSION['emails']= $email;
+    header('Location: profile.php');
+   }else{
+      $message[] = 'login failed';
+   } 
+ 
+}
+
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> medicare hospital website </title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body style="background-image: url('img/background.jpg');
+              background-repeat: no-repeat;
+              background-size: 100% 100%;">
+
+<!-- appointmenting section starts   -->
+<?php include ('menu.php');?>
+<section class="login" id="login">
+
+    <h1 class="heading"> <span>log</span> in</h1>    
+
+    <div class="row">
+
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+            <h3>log in</h3>
+            <input type="email"name="email" placeholder="Enter your email" class="box">
+            <input type="password"name="password" placeholder="Enter your password" class="box">
+            
+            <input type="submit" name="submit" value="login" class="btn">
+            <div class="log">
+            <span>Need an account? <a href="signup.php">SIGNUP</a><span>
+            </div>
+            <?php
+            if(isset($message)) {
+                foreach($message as $message) {
+                echo'<p class ="message">'.$message.'</p>';
+            }
+            }
+        ?>
+         </form>
+       
+    </div>
+
+</section>
+
+
+<!-- appointmenting section ends -->
+
+<?php include('footer.php');?>
+
+<!-- js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
+
+

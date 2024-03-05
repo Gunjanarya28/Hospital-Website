@@ -1,0 +1,84 @@
+<?php
+session_start();
+if(isset($_SESSION['emails'])){
+$em=$_SESSION['emails'];
+$conn = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
+$sql="Select * From contact_form where email='$em'";
+$query=mysqli_query($conn,$sql);
+if($query ->num_rows >0){
+    $row=$query->fetch_assoc();
+}
+else{
+    header('location:login.php');
+}
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> medicare hospital website </title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body style="background-image: url('img/background.jpg');
+              background-repeat: no-repeat;
+              background-size: 100% 100%;">
+
+
+<?php include ('menu.php');?>
+
+
+<section class="profile" id="profile">
+    <h1 class="heading" style="margin-top:8rem;"> <span>pro</span>file</h1>
+    <div class="box-container">    
+    <div class="row">
+    <div class="table-responsive">
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Number</th>
+        <th>Specilization</th>
+        <th>Doctor's Name</th>
+      </tr>
+    </thead>
+    <tbody>
+                <tr>
+                    <td><?php echo $row['first']; ?></td>
+                    <td><?php echo $row['last']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['number']; ?></td>
+                    <td><?php echo $row['specialist']; ?></td>
+                    <td><?php echo $row['doctor']; ?></td>
+                <tr>
+    </tbody>
+    </table>
+</div>
+    </div>
+</div>
+
+</section>
+
+
+<!-- appointmenting section ends -->
+
+<?php include('footer.php');?>
+
+<!-- js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

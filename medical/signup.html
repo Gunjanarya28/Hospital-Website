@@ -1,0 +1,82 @@
+<?php
+
+$conn = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
+
+if((isset($_POST['submit']))){
+
+   $first = mysqli_real_escape_string($conn, $_POST['first']);
+   $last = mysqli_real_escape_string($conn, $_POST['last']);
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $password = mysqli_real_escape_string($conn, $_POST['password']);
+   $pass= $_POST['pass'];
+   if($pass===$password)
+   { 
+   $insert = mysqli_query($conn, "INSERT INTO `contact_form`(first,last,email,password) VALUES('$first','$last','$email','$password')") or die('query failed');
+   $message[] = 'signup successfully!';
+   }
+   else{
+      $message[] = 'password doesnot matched';
+   } 
+} 
+ 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> medicare hospital website </title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body style="background-image: url('img/background.jpg');
+              background-repeat: no-repeat;
+              background-size: 100% 100%;">
+<?php include ('menu.php');?>
+
+
+<section class="signup" id="signup">
+
+    <h1 class="heading"> <span>sign</span>up</h1>    
+
+    <div class="row">
+
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+            <h3>sign up</h3>
+            <input type="text"name="first" placeholder="First name" class="box" required>
+            <input type="text"name="last" placeholder="Last name" class="box" required>
+            <input type="email"name="email" placeholder="Email" class="box" required>
+            <input type="password" id="password" name="password" placeholder="Password"  class="box" required>
+            <input type="password" id="pass" name="pass" placeholder="Re-type Password" class="box" required>           
+            <input type="submit" name="submit" value="signup"  class="btn">
+            
+            <?php
+            if(isset($message)) {
+                foreach($message as $message) {
+                echo'<p class ="message">'.$message.'</p>';
+            }
+            }
+        ?>
+         </form>
+       
+    </div>
+
+</section>
+
+<!-- appointmenting section ends -->
+
+<?php include ('footer.php');?>
+
+<!-- js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
+
+

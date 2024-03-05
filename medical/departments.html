@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> medicare hospital website </title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    .departments{
+        padding: 0rem 4%;
+        padding-bottom: 5rem;
+    }
+  .departments  a:hover,
+  .departments a:focus{
+    text-decoration: none;
+    outline: none;
+}
+.departments .vertical-tab{
+    font-family: 'Montserrat', sans-serif;
+    display: table;
+    width: 1110px;
+}
+.departments .vertical-tab .nav-tabs{
+    width: 27%;
+    min-width: 27%;
+    border: none;
+    vertical-align: top;
+    display: table-cell;
+}
+.departments .vertical-tab .nav-tabs li{ float: none; }
+.departments .vertical-tab .nav-tabs li a{
+    color: #222;
+    background: transparent;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 12px 15px 11px;
+    margin: 0 0 10px 0;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease 0.3s;
+}
+.departments .vertical-tab .nav-tabs li a:hover,
+.departments .vertical-tab .nav-tabs li.active a{
+    color: #1e97bf;
+    background: rgba(30,151,191,0.1);
+    border: none;
+}
+.departments .vertical-tab .nav-tabs li.active a:hover,
+.departments .vertical-tab .nav-tabs li.active a{ color: #1e97bf; }
+.departments .vertical-tab .nav-tabs li a:before{
+    content: "";
+    background: #1e97bf;
+    height: 100%;
+    width: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    transition: width 0.5s ease 0s,height 0.5s ease 0.15s;
+}
+.departments .vertical-tab .nav-tabs li.active a:before,
+.departments .vertical-tab .nav-tabs li a:hover:before{
+    width: 100%;
+    height: 0;
+}
+.departments .vertical-tab .tab-content{
+    color: #444;
+    background: rgba(30,151,191,0.1);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 23px;
+    padding: 20px;
+    display: table-cell;
+    
+}
+.departments .vertical-tab .tab-content h3{
+    color: #1e97bf;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 35px 0 7px;
+}
+.departments .vertical-tab .tab-content ul{
+    margin-left: 15px;
+    list-style-type: ">";
+}
+@media only screen and (max-width: 479px){
+    .departments .vertical-tab .nav-tabs{
+        width: 100%;
+        margin: 0 0 10px;
+        display: block;
+    }
+    .departments .vertical-tab .nav-tabs li a{
+        padding: 15px 10px 14px;
+        margin-bottom: 10px;
+    }
+    .departments .vertical-tab .tab-content{
+        font-size: 14px;
+        border-radius: 0 0 20px 20px;
+        display: block; 
+    }
+    .departments .vertical-tab {
+    font-family: 'Montserrat', sans-serif;
+    display: table;
+    width: fit-content;
+}
+}
+
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+</head>
+<body>  
+<!-- header section starts  -->
+<?php include ('menu.php');?>
+
+<section class="departments" id="departments">
+
+    <h1 class="heading"> <span>depart</span>ments</h1>
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="vertical-tab" role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#Anaesthesia" aria-controls="home" role="tab" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/5506/5506765.png" style="height:3rem; width: 6rem;float: left; padding-left: 3rem;"/>Anaesthesia</a></li>
+                    <li role="presentation"><a href="#Audiometry" aria-controls="profile" role="tab" data-toggle="tab">
+                    <img src="https://mobilescreening.com.au/wp-content/uploads/2020/03/hearing-icon-90x90.png" style="height:3rem; width: 6rem;float: left; padding-left: 3rem;"/>Audiometry</a></li>
+                    <li role="presentation"><a href="#Cardiology" aria-controls="messages" role="tab" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2864/2864298.png" style="height:3rem; width: 6rem;float: left; padding-left: 3rem;"/>Cardiology</a></li>
+                    <li role="presentation"><a href="#Dental" aria-controls="home" role="tab" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/10299/10299283.png" style="height:3rem; width: 6rem;float: left; padding-left: 3rem;"/>Dental</a></li>
+                    <li role="presentation"><a href="#Orthopedics" aria-controls="profile" role="tab" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/4006/4006302.png" style="height:3rem; width: 6rem;float: left; padding-left: 3rem;"/>Orthopedics</a></li>
+                    <li role="presentation"><a href="#Dialysis" aria-controls="messages" role="tab" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/11962/11962980.png" style="height:3rem; width: 6rem;float: left; padding-left: 3rem;"/>Dialysis</a></li>
+                    <li role="presentation"><a href="#ENT" aria-controls="home" role="tab" data-toggle="tab">
+                    <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/ent-10-377447.png?f=webp&w=256" style="height:3rem; width: 6rem;float: left; padding-left: 3rem;"/>ENT</a></li>
+                    <li role="presentation"><a href="#Opthalmology" aria-controls="profile" role="tab" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2007/2007207.png" style="height:3rem; width: 6rem;float: left; padding-left: 3rem;"/>Opthalmology</a></li>
+                    <li role="presentation"><a href="#Pediatrics" aria-controls="messages" role="tab" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/9914/9914278.png" style="height:3rem; width: 6rem;float: left; padding-left: 3rem;"/>Pediatrics</a></li>
+                    <li role="presentation"><a href="#Neurosurgery" aria-controls="home" role="tab" data-toggle="tab">
+                    <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/neuroscience-8437140-6641668.png?f=webp&w=256" style="height:3rem; width: 6rem;float: left; padding-left: 3rem;"/>Neurosurgery</a></li>   
+                
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content tabs">
+                    <div role="tabpanel" class="tab-pane fade in active" id="Anaesthesia">
+                     <img src="img\anesthesia.jpg" style="width:616px;height:221px; margin-left:auto; margin-right:auto;"class="img-responsive">
+                        <h3>Anaesthesia </h3>
+                        <p>Welcome to the Department of Anaesthesiology, Pain medicine and Intensive Care at The Medicare Hospital. The department is committed to place the interests of the patients as its paramount concern. Our work is just not confined to the state of art-ultra modern 5 Operation Theatres (OTs), but also beyond it. It extends from the Pre-anaesthesia clinics (PAC), intra-operative care, Post Anaesthesia Care Units (PACU) and 20 bedded Surgical Intensive Care Unit (SICU) where patients are closely monitored by our team. We provide clinical anaesthesia services and critical care management of surgical patients 24 hours a day. The surgical specialities to which the department provides anaesthesia services are general surgery, orthopaedics, obstetric and gynaecology, E.N.T., paediatric surgery, urology, gastroenterology, cardiac surgery, onco-surgery and neurosurgery. Our mission is to deliver excellent anaesthesia services, pain management and intensive care for the patient.
+                            <br><br><b>We specialize in Providing</b>
+                           <ul>
+                            <li>Labour Analgesia</li>
+                            <li>Epidural Analgesia</li>
+                            <li>Intensive Care</li>
+                            <li>General Anaesthesia</li>
+                            <li>Spinal Anaesthesia</li>
+                            <li>Nerve blocks for chronic pain</li>
+                            <li>Multimodal Anaesthesia</li>
+                            </ul>
+                        </p>
+                        
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Audiometry">
+                    <img src="https://media.istockphoto.com/id/1209230413/vector/otolaryngologist-examines-the-ear-ent-consults-hearing-and-deafness.jpg?s=612x612&w=0&k=20&c=Y7dmWgRUgMxyedA4iV5ibySOXgpZUNHWIluKVmRZd-k=" style="width:616px;height:221px; margin-left:auto; margin-right:auto;"class="img-responsive">
+                        <h3>Audiometry</h3>
+                        <p>The Speech Therapy Department conducts diagnostic testing and treatment for swallowing problems, communication impairments and cognitive impairments. People with all types of speech problems, from infants to the elderly can find comprehensive and state-of-the-art facilities to improve speech impairment as well as quality of life.
+                        <br><br><b>We specialize in Treating</b>
+                           <ul>
+                            <li>Pure tone Audiometry</li>
+                            <li>Impedance Audiometry</li>
+                            <li>Speech Audiometry</li>
+                            <li>Oto-acoustic Emission testing</li>
+                            <li>Hearing Aid Trial</li>
+                            <li>Speech Clinic</li>
+                            <li>BERA/ABR</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Cardiology">
+                    <img src="https://img.freepik.com/premium-vector/cardiology-cardiovascular-heart-diagnostics-cardiologist-doctor-consulting-elder-patient-about-heart-disease-medical-check-up-transplantation-research-heart-attack-hypertension-diabetes_458444-439.jpg" style="width:616px;height:221px; margin-left:auto; margin-right:auto;"class="img-responsive">
+                        <h3>Cardiology</h3>
+                        <p> The department of Cardiac Care includes cardiology and cardiac surgery. It represents one of the largest and most modern cardiac care facilities which are affordable and available to one and all. Our dedicated team of cardiologists and cardiac surgeons are well-known for their expertise, knowledge, and vast experience in their respective arena of heart related problems. The Medicare Hospital provides a comprehensive range of diagnostics as well as therapeutic services for patients with Cardio Vascular ailments. The Centre provides dedicated round the clock services to all patients with heart ailments,havingthe best response in acute heart attacks for its effective practices to treat heart attacks during the Golden Hour: first hour after onset of a heart attack, during which if the person gets required treatment he can expect near-complete recovery. We also have the Cardio-Thoracic & Vascular Surgery division that is equipped with all modern facilities to conduct Coronary Bypass Surgery (CABG), valve replacement surgeries, aortic root and aneurysm surgeries. The department also has an array of non-invasive services like TransoesophagealEchocardiology, Echocardiography, Treadmill (including Stress Echo and Dobutamine Stress Echo Testing), 24 hour Holter monitoring, 24 hour Ambulatory blood pressure monitoring and Head up Tilt table testing. The advanced diagnostic services include CT Coronary Angiography as well as a range of Nuclear Cardiology services.
+                        <br><br><b>We specialize in Treating</b>
+                           <ul>
+                            <li>Coronary Angiography</li>
+                            <li>Periphery Angioplasty</li>
+                            <li>Coronary Angioplasty/ Stenting</li>
+                            </ul>
+                            </p>
+                        </div>
+                    <div role="tabpanel" class="tab-pane fade " id="Dental">
+                    <img src="https://media.istockphoto.com/id/1196021900/vector/dentist-examines-patient-in-dentist-chair-woman-visits-orthodontist-at-modern-dental-clinic.jpg?s=612x612&w=0&k=20&c=_l4U3Y_XKbCR2I8bQro_OFnX1x-NGcNhSHd4Abw9a-E=" style="width:616px;height:221px; margin-left:auto; margin-right:auto;"class="img-responsive">
+                        <h3>Dental</h3>
+                        <p>Our multispecialty dental centre provides excellent quality and wide array of dental services with the help of our highly professional and experienced dentists, our finest technology & equipment, our nurses and non-medical support staff. The clinic boasts of highest quality dental experience coupled with a relaxed and warm ambiance for all those visiting the clinic. Bringing a smile on our patient's face is our top priority and for this, we offer exceptional preventive and cosmetic dentistry services. Dental problems, whether minor or major, need to be treated as soon as possible. Not many know, but failing to do so can cause other health issues and diseases. Only an expert dentist will be able to diagnose the consequences of oral problems before they get severe. At Medicity Clinic, we understand the importance of oral health, and thus, provide a complete range of superior quality dental services for people of all age groups. Dental care is not just limited to teeth; it also includes head, face, jaw, salivary glands and tongue. At The Medicity Dental Centre, our highly skilled and experienced team of dentists take every measure to ensure that your treatment is smooth. They will also spend time in making you aware of the various treatment options available so that you can choose the best course.
+                        <br><br><b>We specialize in Treating</b>
+                           <ul>
+                            <li>Crowns</li>
+                            <li>Bridges & Implants</li>
+                            <li>Orthodontic Treatment (Braces)</li>
+                            <li>Root Canal Treatment (RCT)</li>
+                            <li>Trauma Related Facial Fractures</li>
+                            <li>Periodontal Cases (Related to Gums)</li>
+                            <li>Surgical Extractions</li>
+                            <li>Cosmetic Dentistry</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Orthopedics">
+                    <img src="https://media.istockphoto.com/id/1275829343/vector/podiatrist-examining-ankle-and-foot-of-female-patient.jpg?s=612x612&w=0&k=20&c=CxzRhN2EywpyrE0bf1_GNmjgkVhot3Qps0akfiF6guM=" style="width:616px;height:221px; margin-left:auto; margin-right:auto;"class="img-responsive">
+                        <h3>Orthopedics</h3>
+                        <p>In Orthopaedics, our primary objective is "early mobilisation, minimal discomfort". This state-of-the-art specialised health care facility is designed to provide the highest levels of professional expertise and patient care in the field of orthopedics. Here, every patient is tended to by a multi-disciplinary unit. Treatment at the Institute envelopes inpatient and outpatient services most efficiently.
+                            <br><br><b>We specialize in Treating</b>
+                            <ul>
+                            <li>Total knee and Hip replacement</li>
+                            <li>Hemiarthroplasty</li>
+                            <li>Arthroscopic surgeries of knee/shoulder</li>
+                            <li>Sports Medicine</li>
+                            <li>Complex & Neglected Trauma</li>
+                            <li>Tumor surgeries (Reconstruction surgeries)</li>
+                            <li>Diabetic foot consultation</li>
+                            <li>Low Back Ache</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Dialysis">
+                    <img src="https://media.istockphoto.com/id/1281811212/vector/patient-getting-kidney-disease-treatment-or-dialysis.jpg?s=612x612&w=0&k=20&c=55Z5G1Cd_JB6ivHoW10FNBl4d76t9ohHVMkjAVdNcZA=" style="width:616px;height:221px; margin-left:auto; margin-right:auto;"class="img-responsive">
+                        <h3>Dialysis</h3>
+                        <p>A state of the art Artificial Kidney Dialysis Unit is functioning at The Medicity Hospital. The unit has 6 beds and 4 dialysis machines in an air-conditioned dust free environment. The unit boasts of dedicated machines for HbsAg +ve, HCV+ve cases, to comply with universal precautions. The unit has highly trained and dedicated staff.
+                        <br><br><b>We specialize in Treating</b>
+                            <ul>
+                            <li>Hemodialysis</li>
+                            <li>Peritoneal Dialysis</li>
+                            <li>Home Hemodialysis</li>
+                            <li>Kindey Diet</li>
+                            <li>Patient Education Program</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade " id="ENT">
+                    <img src="https://media.istockphoto.com/id/1372093909/vector/doctor-advises-patient-about-treatment-of-disease-otolaryngologist-with-medical-instrument.jpg?s=612x612&w=0&k=20&c=8bBFoOiEDgcEe5FpDHoPgkc4mD13Jz37D9FSvATgbfo=" style="width:616px;height:221px; margin-left:auto; margin-right:auto;"class="img-responsive">
+                        <h3>ENT</h3>
+                        <p>Department of E.N.T. at The Medicare Hospital is equipped with the finest technology and the highly qualified medical professionals to provide the best possible care to the patients with ailments related to Ear, Nose & throat, of all age groups. The department is dedicated to expanding the frontiers of diagnosis, treatment and research of disorders of the ear, nose and sinuses, throat and the anterior skull base.
+                        <br><br><b>We specialize in Treating</b>
+                            <ul>
+                            <li> Tympanoplasty Endoscopic with Incision</li>
+                            <li> Tympanoplasty Microscopic with small Incision</li>
+                            <li> Myringoplasty</li>
+                            <li> Myringotomy with Grommet Insertion</li>
+                            <li> Stapedotomy</li>
+                            <li> Radical mastoidectomy</li>
+                            <li> Ossiculoplasty</li>
+                            <li> Septoplasty</li>
+                            <li> FESS</li>
+                            <li> CSF rhinorrhea repair</li>
+                            <li> Endoscopic DCR</li>
+                            <li> Endoscopic Orbital decompression</li>
+                            <li> Turbinoplasty</li>
+                            <li> Esophagoscopy with Foreign Body Removal</li>
+                            <li> Bronchoscopy & Foreign Body Removal from Airway</li>
+                            <li> Paediatric and Adult Tracheostomy</li>
+                            </ul>
+                            </p>
+                        </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Opthalmology">
+                    <img src="https://thumbs.dreamstime.com/b/eye-doctor-banner-flat-cartoon-poster-optometrist-ophthalmologist-medical-staff-people-glasses-letter-vision-test-158504267.jpg" style="width:616px;height:221px; margin-left:auto; margin-right:auto;"class="img-responsive">
+                        <h3>Opthalmology</h3>
+                        <p>Eyes are important structure of human body and Gods gift for sight and mirror of body. Many eye problems can be prevented by comprehensive early routine eye check- ups and proper eye care. Medicare hospital eye department is new state of art advanced integrated eye care centre, with automatic advanced machines to provide total eye care. Multi-speciality under one roof helps to provide quality eye care and eye surgeries to accidents and high risk patients under supervision with team work. The department specialises in diagnosing & treating all types of ocular diseases by Laser or Surgeries ranging from simple day care procedures to the most advanced complicated invasive surgeries. The department provides a comprehensive eye treatment of diabetic eye diseases with best resources and expertise to better meet the needs of the growing number of patients with diabetic eye problems. The specialised facility of this department is qualified & experienced Phaco & Cornea specialist with its dedicated efforts, care, compassion and commitment towards ongoing fight for cataract awareness and blindness. Medicity eye department has comfortable high class infrastructure with all modern OPD equipment, modular OT with optical, medical store, laboratory and radiological investigation facilities in same premises to fight for blindness as "PERFECT CARE FOR PERFECT VISION."
+                        <br><br><b>We specialize in Treating</b>
+                        <ul>
+                        <li> Cataract Surgery via MICS/Phaco Technique</li>
+                         <li> Refractive Surgeries (Toric/Multifocal/Trifocal/ICL Lens)</li>
+                         <li> Cornea Services</li>
+                         <li> Glaucoma Surgeries</li>
+                         <li> Dry Eye Management</li>
+                         <li> Oculoplastic Surgeries</li>
+                         <li> Pediatric Ophthalmology Services</li>
+                         <li> Medical Retina Services</li>
+                         </ul>
+                        </p>
+                        </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Pediatrics">
+                    <img src="https://media.istockphoto.com/id/1201037170/vector/child-examination-at-pediatrician-appointment.jpg?s=612x612&w=0&k=20&c=dBB7RrAOln7MhQCWqrQdJpZ9O1b58-B6t7svSufwaOk=" style="width:616px;height:221px; margin-left:auto; margin-right:auto;"class="img-responsive">
+                        <h3>Pediatrics</h3>
+                        <p>The department consists of a well-qualified group of Paediatricians to provide round-the-clock services, especially for neonatal care. Following services are being provided by the Department of Paediatrics Well, baby clinic and routine immunization advise. Developmental assessment and Nutritional advise. Regular health checks up and treatment of routine illnesses. Advise on health care of children and preventive measures for illnesses. Pediatric department is planning for a multi-centric approach for the children who are developmentally and physically challenged with a team of Paediatrician, Developmental Psychologist, Physiotherapist, Audiologist & Speech therapist, Early Interventional Specialist.
+                        <br><br><b>We specialize in Treating</b>
+                        <ul>
+                         <li>General Pediatrics</li>
+                         <li>Allergy & Asthma clinic</li>
+                         <li>High risk newborn clinic</li>
+                         <li>Immunization Services</li>
+                         <li>Neonatal Intensive care</li>
+                         <li>Pediatric Intensive Care</li>
+                         </ul>
+                        </p>
+                         </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Neurosurgery">
+                    <img src="https://media.istockphoto.com/id/1324417474/vector/brain-mapping-as-neuroscience-spatial-representations-tiny-person-concept.jpg?s=612x612&w=0&k=20&c=h0bH-gt3rbV36w1kgOoqb4sjxQFl7fb7YMTd2G_MWlU=" style="width:616px;height:221px; margin-left:auto; margin-right:auto;"class="img-responsive">
+                        <h3>Neurosurgery</h3>
+                        <p>Neurosciences is designed to provide the highest levels of professional expertise and leadership in all major disciplines of neurosciences/neurosurgery through an integrated team of neurologists dedicated towards providing total patient care. Neurosciences at Medicare Hospital are dedicated to delivering state-of-the-art care, for the full range of neurological diseases and disorders.Paediatric neurosciences service provides comprehensive neurological care for infants, children, and adolescents with a wide spectrum of neurological disorders. Medicity Hospital bring together super specialists in the field of neurology, neurosurgery, interventional neurosurgery and neuro radiology, as well as specially trained nurses, and technicians to provide comprehensive evaluation and treatment of patients with neurological diseases. Every piece of equipment represents the state-of-the-art in advanced medical imaging technology. From the finest and most advanced imaging equipment to the newest concepts in patient safety and comfort our neurosciences department is the best available care.
+                        <br><br><b>We specialize in Treating</b>
+                        <ul>
+                        <li> Stroke Clinic</li>
+                        <li> Epilepsy clinic</li>
+                        <li> Microscopic neurosurgery including endoscopic transcranial endonasal and skull base procedures</li>
+                        <li> Trauma including ICP monitoring</li>
+                        <li> Round the clock ICU and PICU backup</li>
+                        <li> Evoke Potentials</li>
+                        <li> Pediatric Neurology and Neurodisability</li>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+</section>
+<?php include ('footer.php');?>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
